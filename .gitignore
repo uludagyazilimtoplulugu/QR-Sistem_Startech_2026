@@ -1,0 +1,19 @@
+node_modules/
+.env
+.env.local
+.env.production
+*.log
+
+# IDE & tools
+.claude/
+.vscode/
+.idea/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# SSL certificates
+*.pem
+*.key
+*.crt

@@ -1,0 +1,57 @@
+<div class="page">
+  <!-- PASIF EKRAN -->
+  <div id="passive-container" class="hidden">
+    <div class="passive-screen">
+      <div class="emoji">🚀</div>
+      <div class="title" data-i18n="event.passive_title">Sahne hazır, sen hazır mısın?</div>
+      <div class="subtitle" data-i18n="event.passive_subtitle">Etkinlik henüz başlamadı. Biraz bekleyin...</div>
+    </div>
+  </div>
+
+  <!-- AKTIF ICERIK -->
+  <div id="active-container" class="hidden">
+    <h1 class="page-title" data-i18n="dashboard.title">Ana Sayfa</h1>
+
+    <!-- STATS (sadece katilimci gorecek) -->
+    <div id="dash-stats" class="stats-grid hidden">
+      <div class="stat-card">
+        <div class="stat-value" id="dash-points">0</div>
+        <div class="stat-label" data-i18n="dashboard.total_points">Toplam Puan</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="dash-rooms">0</div>
+        <div class="stat-label">Girilen Oda</div>
+      </div>
+    </div>
+
+    <!-- SURPRIZ KOD (sadece katilimcilar) -->
+    <div id="surprise-section" class="card hidden">
+      <div class="card-title" data-i18n="surprise.title">🎁 Sürpriz Kod</div>
+      <form id="surprise-form" class="flex gap-8">
+        <input type="text" id="surprise-code-input" class="form-input" placeholder="Kodu girin..." required style="flex:1">
+        <button type="submit" class="btn btn-warning btn-sm" data-i18n="surprise.redeem">Kullan</button>
+      </form>
+    </div>
+
+    <!-- ODADAKI KATILIMCILAR (gorevli) -->
+    <div id="gorevli-room-section" class="card hidden">
+      <div class="flex justify-between items-center mb-16">
+        <div class="card-title" style="margin:0">Odadaki Katılımcılar</div>
+        <button class="btn btn-sm" onclick="App.loadDashActiveParticipants()">Yenile</button>
+      </div>
+      <div id="dash-active-participants"><div class="spinner"></div></div>
+    </div>
+
+    <!-- ONAY KUYRUGU (mentor/startup) -->
+    <div id="approval-section" class="card hidden">
+      <div class="card-title" data-i18n="approval.title">📋 Bekleyen Onaylar</div>
+      <div id="pending-list"></div>
+    </div>
+
+    <!-- SON ISLEMLER -->
+    <div class="card">
+      <div class="card-title" data-i18n="dashboard.recent">Son İşlemler</div>
+      <div id="dash-transactions"></div>
+    </div>
+  </div>
+</div>

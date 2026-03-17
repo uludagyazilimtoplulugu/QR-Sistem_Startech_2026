@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#111a24">
+  <meta name="description" content="QR Etkinlik Yönetim Sistemi">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/svg+xml" href="/icons/icon-192.svg">
+  <link rel="apple-touch-icon" href="/icons/icon-192.svg">
+  <title>QR Etkinlik Sistemi</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <!-- TOP NAV -->
+  <header id="top-nav" class="top-nav hidden">
+    <div class="nav-left">
+      <span class="nav-logo">⚡ QR</span>
+    </div>
+    <div class="nav-center">
+      <span id="nav-username"></span>
+      <span id="nav-role-badge" class="role-badge"></span>
+    </div>
+    <div class="nav-right">
+      <span id="nav-points" class="nav-points hidden"></span>
+      <button id="btn-lang" class="btn-icon" title="Dil">TR</button>
+      <button id="btn-logout" class="btn-icon" title="Çıkış">⏻</button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main id="app-content">
+    <div class="loading-screen">
+      <div class="spinner"></div>
+    </div>
+  </main>
+
+  <!-- TOAST NOTIFICATIONS -->
+  <div id="toast-container"></div>
+
+  <!-- BOTTOM NAV -->
+  <nav id="bottom-nav" class="bottom-nav hidden">
+    <a href="#/dashboard" class="nav-item" data-page="dashboard">
+      <span class="nav-icon">🏠</span>
+      <span data-i18n="nav.home">Ana Sayfa</span>
+    </a>
+    <a href="#/scan" class="nav-item nav-participant hidden" data-page="scan">
+      <span class="nav-icon">📷</span>
+      <span data-i18n="nav.scan">Tarama</span>
+    </a>
+    <a href="#/my-qr" class="nav-item nav-mentor-startup hidden" data-page="my-qr">
+      <span class="nav-icon">📱</span>
+      <span data-i18n="nav.my_qr">QR Kodum</span>
+    </a>
+    <a href="#/leaderboard" class="nav-item nav-admin hidden" data-page="leaderboard">
+      <span class="nav-icon">🏆</span>
+      <span data-i18n="nav.leaderboard">Sıralama</span>
+    </a>
+    <a href="#/room-gate" class="nav-item nav-gorevli hidden" data-page="room-gate">
+      <span class="nav-icon">🚪</span>
+      <span data-i18n="nav.room_gate">Oda</span>
+    </a>
+    <a href="#/admin" class="nav-item nav-admin hidden" data-page="admin">
+      <span class="nav-icon">⚙️</span>
+      <span data-i18n="nav.admin">Admin</span>
+    </a>
+  </nav>
+
+  <!-- VENDOR SCRIPTS -->
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"
+          onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/html5-qrcode.min.js'"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"
+          onerror="this.onerror=null;this.src='https://unpkg.com/qrcode@1.5.1/build/qrcode.min.js'"></script>
+  <script src="https://cdn.jsdelivr.net/npm/i18next@23.16.4/i18next.min.js"></script>
+
+  <!-- APP SCRIPTS -->
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/notifications.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/qr.js"></script>
+  <script src="/js/scanner.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

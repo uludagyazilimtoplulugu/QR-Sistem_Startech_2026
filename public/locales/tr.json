@@ -1,0 +1,88 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "scan": "Tarama",
+    "leaderboard": "Sıralama",
+    "room_gate": "Oda",
+    "admin": "Admin"
+  },
+  "roles": {
+    "admin": "Admin",
+    "mentor": "Mentor",
+    "startup": "Startup",
+    "participant": "Katılımcı",
+    "gorevli": "Görevli"
+  },
+  "auth": {
+    "login_subtitle": "Etkinliğe hoş geldiniz",
+    "register_subtitle": "Yeni hesap oluşturun",
+    "reset_subtitle": "Şifrenizi sıfırlayın",
+    "email": "E-posta",
+    "password": "Şifre",
+    "full_name": "Ad Soyad",
+    "login_btn": "Giriş Yap",
+    "register_btn": "Kayıt Ol",
+    "forgot_password": "Şifremi Unuttum",
+    "no_account": "Hesabınız yok mu?",
+    "register_link": "Kayıt Ol",
+    "has_account": "Hesabınız var mı?",
+    "login_link": "Giriş Yap",
+    "back_to_login": "Girişe Dön",
+    "send_code": "Kod Gönder",
+    "reset_code": "Doğrulama Kodu (6 haneli)",
+    "new_password": "Yeni Şifre",
+    "reset_btn": "Şifreyi Değiştir"
+  },
+  "event": {
+    "passive_title": "Sahne hazır, sen hazır mısın? \ud83d\ude80",
+    "passive_subtitle": "Etkinlik henüz başlamadı. Biraz bekleyin..."
+  },
+  "dashboard": {
+    "title": "Ana Sayfa",
+    "total_points": "Toplam Puan",
+    "recent": "Son İşlemler"
+  },
+  "scan": {
+    "title": "Tarama",
+    "my_qr": "QR Kodum",
+    "scan_qr": "Tara",
+    "manual": "Kod Gir",
+    "manual_title": "Kodu Manuel Gir",
+    "user_id": "Kullanıcı ID",
+    "short_code": "Kısa Kod (6 hane)",
+    "verify": "Onayla",
+    "aim_camera": "Kamerayı QR koda tutun",
+    "code_title": "Kod Gir",
+    "code_label": "Kod",
+    "code_hint": "Sürpriz kod veya karşı tarafın 6 haneli kodunu girin"
+  },
+  "qr": {
+    "refreshing": "Yenilenme"
+  },
+  "scanner": {
+    "camera_error": "Kamera açılamadı"
+  },
+  "surprise": {
+    "title": "\ud83c\udf81 Sürpriz Kod",
+    "redeem": "Kullan"
+  },
+  "approval": {
+    "title": "\ud83d\udccb Bekleyen Onaylar"
+  },
+  "leaderboard": {
+    "title": "\ud83c\udfc6 Liderlik Tablosu",
+    "participants": "Katılımcılar",
+    "mentors_startups": "Mentorlar & Startup'lar"
+  },
+  "room_gate": {
+    "title": "\ud83d\udea8 Oda Kapısı",
+    "entry": "Katılımcı Girişi",
+    "scan_entry": "QR Tara (Giriş)",
+    "exit": "Tamamlama Onayı",
+    "participant_id": "Katılımcı ID",
+    "confirm_exit": "Tamamlandı Onayla"
+  },
+  "admin": {
+    "title": "\u2699\ufe0f Admin Paneli"
+  }
+}

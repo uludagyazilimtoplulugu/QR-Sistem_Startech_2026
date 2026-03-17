@@ -1,0 +1,34 @@
+<div class="page">
+  <h1 class="page-title" data-i18n="room_gate.title">Oda Kapısı</h1>
+
+  <div id="room-gate-content">
+    <!-- Oda Bilgisi -->
+    <div class="card">
+      <div class="card-title" id="room-name">-</div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value" style="font-size:14px" id="room-type">-</div>
+          <div class="stat-label">Tür</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="room-limit">-</div>
+          <div class="stat-label">Giriş Limiti</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="room-exit-points">-</div>
+          <div class="stat-label">Çıkış Puanı</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Giris: QR Tara -->
+    <div class="card">
+      <div class="card-title">Katılımcı Girişi (QR Tara)</div>
+      <div class="flex gap-8 mb-16">
+        <button id="btn-room-scan" class="btn btn-primary" style="flex:1">Kamerayı Aç</button>
+        <button id="btn-room-scan-stop" class="btn btn-danger hidden" style="flex:1">Kamerayı Kapat</button>
+      </div>
+      <div id="room-qr-reader" style="width:100%"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,128 @@
+<div class="page">
+  <h1 class="page-title" data-i18n="admin.title">⚙️ Admin Paneli</h1>
+
+  <!-- ADMIN TABS -->
+  <div class="tabs" style="flex-wrap:wrap">
+    <button class="tab admin-tab active" data-target="admin-event">Etkinlik</button>
+    <button class="tab admin-tab" data-target="admin-whitelist">Whitelist</button>
+    <button class="tab admin-tab" data-target="admin-rooms">Odalar</button>
+    <button class="tab admin-tab" data-target="admin-points">Puanlar</button>
+    <button class="tab admin-tab" data-target="admin-surprise">Kodlar</button>
+    <button class="tab admin-tab" data-target="admin-monitoring">İzleme</button>
+  </div>
+
+  <!-- ========== ETKINLIK ========== -->
+  <div id="admin-event" class="admin-panel">
+    <div class="card">
+      <div class="card-title">Etkinlik Durumu</div>
+      <div class="text-center mb-16" style="font-size:24px;font-weight:800" id="event-status">...</div>
+      <div class="flex gap-8">
+        <button id="btn-start-event" class="btn btn-success">🚀 Başlat</button>
+        <button id="btn-stop-event" class="btn btn-danger">⏹ Durdur</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== WHITELIST ========== -->
+  <div id="admin-whitelist" class="admin-panel hidden">
+    <div class="card">
+      <div class="card-title">Tekli Ekleme</div>
+      <form id="wl-add-form" class="flex gap-8" style="flex-wrap:wrap">
+        <input type="email" id="wl-email" class="form-input" placeholder="E-posta" required style="flex:1;min-width:200px">
+        <select id="wl-role" class="form-input" style="width:140px">
+          <option value="participant">Katılımcı</option>
+          <option value="mentor">Mentor</option>
+          <option value="startup">Startup</option>
+          <option value="gorevli">Görevli</option>
+          <option value="admin">Admin</option>
+        </select>
+        <button type="submit" class="btn btn-primary btn-sm">Ekle</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <div class="card-title">CSV Yükle (email,rol)</div>
+      <form id="wl-csv-form" class="flex gap-8">
+        <input type="file" id="wl-csv-file" accept=".csv" class="form-input" style="flex:1">
+        <button type="submit" class="btn btn-primary btn-sm">Yükle</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Excel Yükle (sadece email → katılımcı)</div>
+      <form id="wl-excel-form" class="flex gap-8">
+        <input type="file" id="wl-excel-file" accept=".xlsx,.xls" class="form-input" style="flex:1">
+        <button type="submit" class="btn btn-primary btn-sm">Yükle</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Whitelist</div>
+      <div id="wl-list"><div class="spinner"></div></div>
+    </div>
+  </div>
+
+  <!-- ========== ODALAR ========== -->
+  <div id="admin-rooms" class="admin-panel hidden">
+    <div class="card">
+      <div class="card-title">Yeni Oda</div>
+      <form id="room-create-form">
+        <div class="form-group">
+          <input type="text" id="room-name-input" class="form-input" placeholder="Oda Adı" required>
+        </div>
+        <div class="flex gap-8 mb-16">
+          <select id="room-type-input" class="form-input" style="flex:1">
+            <option value="interview">Mülakat</option>
+            <option value="case_study">Case Study</option>
+          </select>
+        </div>
+        <div class="flex gap-8 mb-16">
+          <input type="number" id="room-limit-input" class="form-input" placeholder="Giriş Limiti" value="0" style="flex:1">
+          <input type="number" id="room-points-input" class="form-input" placeholder="Çıkış Puanı" value="0" style="flex:1">
+        </div>
+        <button type="submit" class="btn btn-primary">Oda Oluştur</button>
+      </form>
+    </div>
+
+    <div id="room-list"><div class="spinner"></div></div>
+  </div>
+
+  <!-- ========== PUANLAR ========== -->
+  <div id="admin-points" class="admin-panel hidden">
+    <div class="card">
+      <div class="card-title">Rol Bazlı Puan Değerleri</div>
+      <div id="point-list"><div class="spinner"></div></div>
+    </div>
+  </div>
+
+  <!-- ========== SURPRIZ KODLAR ========== -->
+  <div id="admin-surprise" class="admin-panel hidden">
+    <div class="card">
+      <div class="card-title">Yeni Kod</div>
+      <form id="surprise-create-form">
+        <div class="flex gap-8 mb-16">
+          <input type="text" id="sc-code-input" class="form-input" placeholder="Kod (boş = rastgele)" style="flex:1">
+          <input type="number" id="sc-points-input" class="form-input" placeholder="Puan" value="10" style="width:80px" required>
+        </div>
+        <div class="flex gap-8">
+          <input type="number" id="sc-count-input" class="form-input" placeholder="Adet" value="1" min="1" max="100" style="width:80px">
+          <button type="submit" class="btn btn-primary" style="flex:1">Oluştur</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Tüm Kodlar</div>
+      <div id="surprise-list"><div class="spinner"></div></div>
+    </div>
+  </div>
+
+  <!-- ========== IZLEME ========== -->
+  <div id="admin-monitoring" class="admin-panel hidden">
+    <div id="suspicious-list"></div>
+    <div class="card">
+      <div class="card-title">Son İşlemler</div>
+      <div id="admin-tx-list"><div class="spinner"></div></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+{
+  "nav": {
+    "home": "Home",
+    "scan": "Scan",
+    "leaderboard": "Ranking",
+    "room_gate": "Room",
+    "admin": "Admin"
+  },
+  "roles": {
+    "admin": "Admin",
+    "mentor": "Mentor",
+    "startup": "Startup",
+    "participant": "Participant",
+    "gorevli": "Staff"
+  },
+  "auth": {
+    "login_subtitle": "Welcome to the event",
+    "register_subtitle": "Create a new account",
+    "reset_subtitle": "Reset your password",
+    "email": "Email",
+    "password": "Password",
+    "full_name": "Full Name",
+    "login_btn": "Login",
+    "register_btn": "Register",
+    "forgot_password": "Forgot Password",
+    "no_account": "Don't have an account?",
+    "register_link": "Register",
+    "has_account": "Already have an account?",
+    "login_link": "Login",
+    "back_to_login": "Back to Login",
+    "send_code": "Send Code",
+    "reset_code": "Verification Code (6 digits)",
+    "new_password": "New Password",
+    "reset_btn": "Change Password"
+  },
+  "event": {
+    "passive_title": "Stage is ready, are you? \ud83d\ude80",
+    "passive_subtitle": "The event hasn't started yet. Please wait..."
+  },
+  "dashboard": {
+    "title": "Home",
+    "total_points": "Total Points",
+    "keep_going": "Keep Going!",
+    "recent": "Recent Activity"
+  },
+  "scan": {
+    "title": "Scan",
+    "my_qr": "My QR",
+    "scan_qr": "Scan",
+    "manual": "Manual",
+    "manual_title": "Enter Code Manually",
+    "user_id": "User ID",
+    "short_code": "Short Code (6 digits)",
+    "verify": "Verify",
+    "aim_camera": "Point the camera at the QR code"
+  },
+  "qr": {
+    "refreshing": "Refreshing"
+  },
+  "scanner": {
+    "camera_error": "Could not open camera"
+  },
+  "surprise": {
+    "title": "\ud83c\udf81 Surprise Code",
+    "redeem": "Redeem"
+  },
+  "approval": {
+    "title": "\ud83d\udccb Pending Approvals"
+  },
+  "leaderboard": {
+    "title": "\ud83c\udfc6 Leaderboard",
+    "participants": "Participants",
+    "mentors_startups": "Mentors & Startups"
+  },
+  "room_gate": {
+    "title": "\ud83d\udea8 Room Gate",
+    "entry": "Participant Entry",
+    "scan_entry": "Scan QR (Entry)",
+    "exit": "Completion Confirmation",
+    "participant_id": "Participant ID",
+    "confirm_exit": "Confirm Completed"
+  },
+  "admin": {
+    "title": "\u2699\ufe0f Admin Panel"
+  }
+}

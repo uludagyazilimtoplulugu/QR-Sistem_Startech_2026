@@ -1,0 +1,43 @@
+<div class="page">
+  <h1 class="page-title" data-i18n="scan.title">Tarama</h1>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab scan-tab active" data-target="my-qr-panel" data-i18n="scan.my_qr">QR Kodum</button>
+    <button class="tab scan-tab" data-target="scan-panel" data-i18n="scan.scan_qr">Tara</button>
+    <button class="tab scan-tab" data-target="manual-panel" data-i18n="scan.manual">Kod Gir</button>
+  </div>
+
+  <!-- QR KODUM -->
+  <div id="my-qr-panel" class="scan-panel">
+    <div class="card">
+      <div id="qr-display">
+        <div class="spinner"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QR TARA -->
+  <div id="scan-panel" class="scan-panel hidden">
+    <div class="card">
+      <div id="qr-reader" style="width:100%"></div>
+      <p class="text-center text-muted mt-16" data-i18n="scan.aim_camera">Kamerayı QR koda tutun</p>
+    </div>
+  </div>
+
+  <!-- KOD GIR (surpriz veya karsilikli) -->
+  <div id="manual-panel" class="scan-panel hidden">
+    <div class="card">
+      <div class="card-title" data-i18n="scan.code_title">Kod Gir</div>
+      <form id="code-form">
+        <div class="form-group">
+          <label class="form-label" data-i18n="scan.code_label">Kod</label>
+          <input type="text" id="code-input" class="form-input" placeholder="Kodu buraya yazın" required
+                 maxlength="20" autocomplete="off" style="font-size:20px; text-align:center; letter-spacing:4px">
+        </div>
+        <p class="text-muted" style="font-size:12px; margin-bottom:12px" data-i18n="scan.code_hint">Sürpriz kod veya karşı tarafın 6 haneli kodunu girin</p>
+        <button type="submit" class="btn btn-primary btn-block" data-i18n="scan.verify">Onayla</button>
+      </form>
+    </div>
+  </div>
+</div>
