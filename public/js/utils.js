@@ -32,6 +32,7 @@ const Utils = {
       startup: 'Startup',
       participant: I18n.t('roles.participant'),
       gorevli: I18n.t('roles.gorevli'),
+      kayit_gorevli: 'Kayıt Görevli',
     };
     return labels[role] || role;
   },

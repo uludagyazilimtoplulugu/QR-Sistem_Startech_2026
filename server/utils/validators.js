@@ -17,7 +17,7 @@ function isValidPassword(password) {
  * Validate role enum
  */
 function isValidRole(role) {
-  return ['admin', 'mentor', 'startup', 'participant', 'gorevli'].includes(role);
+  return ['admin', 'mentor', 'startup', 'participant', 'gorevli', 'kayit_gorevli'].includes(role);
 }
 
 /**

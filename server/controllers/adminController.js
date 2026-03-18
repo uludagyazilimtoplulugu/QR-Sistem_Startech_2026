@@ -246,6 +246,27 @@ function generateRandomCode() {
   return code;
 }
 
+// ===================== REGISTRATION CHECK =====================
+
+async function checkRegistration(req, res) {
+  const email = (req.query.email || '').trim().toLowerCase();
+  if (!isValidEmail(email)) {
+    return res.status(400).json({ error: 'invalid_email', message: 'Geçerli bir e-posta girin' });
+  }
+
+  const user = await User.findByEmail(email);
+  if (user) {
+    return res.json({ status: 'registered', message: 'Kayıtlı kullanıcı', user: { fullName: user.full_name, role: user.role } });
+  }
+
+  const wl = await WhitelistEmail.findByEmail(email);
+  if (wl) {
+    return res.json({ status: 'whitelisted', message: 'Whitelist\'te — henüz kayıt olmamış', role: wl.role });
+  }
+
+  res.json({ status: 'not_found', message: 'Bulunamadı' });
+}
+
 module.exports = {
   getEventStatus, startEvent, stopEvent,
   getWhitelist, addWhitelist, uploadWhitelistCSV, uploadWhitelistExcel, deleteWhitelist,
@@ -253,4 +274,5 @@ module.exports = {
   getPointConfig, updatePointConfig,
   getSurpriseCodes, createSurpriseCode, deleteSurpriseCode,
   getTransactions, getSuspicious, getUsers,
+  checkRegistration,
 };
