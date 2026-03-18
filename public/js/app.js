@@ -43,7 +43,18 @@ const App = {
     }
 
     if (Auth.isLoggedIn() && ['/login', '/register', '/forgot-password'].includes(path)) {
-      window.location.hash = '#/dashboard';
+      // Kayıt görevli direkt kayıt sayfasına gitsin
+      if (Auth.user && Auth.user.role === 'kayit_gorevli') {
+        window.location.hash = '#/registration-desk';
+      } else {
+        window.location.hash = '#/dashboard';
+      }
+      return;
+    }
+
+    // Kayıt görevli dashboard'a erişmesin, kayıt sayfasına yönlensin
+    if (Auth.isLoggedIn() && Auth.user && Auth.user.role === 'kayit_gorevli' && path === '/dashboard') {
+      window.location.hash = '#/registration-desk';
       return;
     }
 
@@ -56,6 +67,7 @@ const App = {
       '/scan': { page: 'scan', auth: true, roles: ['participant'] },
       '/my-qr': { page: 'my-qr', auth: true, roles: ['mentor', 'startup'] },
       '/leaderboard': { page: 'leaderboard', auth: true, roles: ['admin'] },
+      '/registration-desk': { page: 'registration-desk', auth: true, roles: ['kayit_gorevli', 'admin'] },
       '/room-gate': { page: 'room-gate', auth: true, roles: ['gorevli'] },
       '/admin': { page: 'admin', auth: true, roles: ['admin'] },
     };
@@ -68,8 +80,8 @@ const App = {
       return;
     }
 
-    // Etkinlik aktif değilse admin dışındaki rolleri dashboard'da tut
-    if (route.auth && route.page !== 'dashboard' && Auth.user && Auth.user.role !== 'admin') {
+    // Etkinlik aktif değilse admin ve kayıt görevli dışındaki rolleri dashboard'da tut
+    if (route.auth && route.page !== 'dashboard' && Auth.user && Auth.user.role !== 'admin' && Auth.user.role !== 'kayit_gorevli') {
       try {
         const ev = await API.get('/event/status');
         if (!ev.event?.is_active) {
@@ -119,6 +131,7 @@ const App = {
       case 'scan': this.initScanPage(); break;
       case 'my-qr': this.initMyQrPage(); break;
       case 'leaderboard': this.initLeaderboardPage(); break;
+      case 'registration-desk': this.initRegistrationDeskPage(); break;
       case 'room-gate': this.initRoomGatePage(); break;
       case 'admin': this.initAdminPage(); break;
     }
@@ -149,6 +162,13 @@ const App = {
     document.querySelectorAll('.nav-gorevli').forEach(el => {
       el.classList.toggle('hidden', Auth.user.role !== 'gorevli');
     });
+    document.querySelectorAll('.nav-kayit-gorevli').forEach(el => {
+      el.classList.toggle('hidden', Auth.user.role !== 'kayit_gorevli' && Auth.user.role !== 'admin');
+    });
+    // Kayıt görevli ana sayfa butonunu görmesin
+    if (Auth.user.role === 'kayit_gorevli') {
+      document.querySelector('.nav-item[data-page="dashboard"]')?.classList.add('hidden');
+    }
     document.querySelectorAll('.nav-admin').forEach(el => {
       el.classList.toggle('hidden', Auth.user.role !== 'admin');
     });
@@ -522,6 +542,69 @@ const App = {
         </div>
       `).join('');
     }
+  },
+
+  initRegistrationDeskPage() {
+    const form = Utils.$('#reg-check-form');
+    const resultEl = Utils.$('#reg-result');
+    if (!form || !resultEl) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = Utils.$('#reg-check-email').value.trim().toLowerCase();
+      if (!email) return;
+
+      const btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = '...';
+
+      const data = await API.get(`/registration/check?email=${encodeURIComponent(email)}`);
+      btn.disabled = false;
+      btn.textContent = 'Kontrol Et';
+      resultEl.classList.remove('hidden');
+
+      if (data.status === 'registered') {
+        resultEl.innerHTML = `
+          <div class="card" style="border-left:4px solid var(--success)">
+            <div class="text-success" style="font-weight:700">✓ Kayıtlı Kullanıcı</div>
+            <div class="mt-8">${Utils.escapeHtml(data.user.fullName)} · ${Utils.roleLabel(data.user.role)}</div>
+          </div>`;
+      } else if (data.status === 'whitelisted') {
+        resultEl.innerHTML = `
+          <div class="card" style="border-left:4px solid var(--warning)">
+            <div class="text-warning" style="font-weight:700">⏳ Whitelist'te — Henüz Kayıt Olmamış</div>
+            <div class="mt-8">Rol: ${Utils.roleLabel(data.role)}</div>
+          </div>`;
+      } else if (data.status === 'not_found') {
+        resultEl.innerHTML = `
+          <div class="card" style="border-left:4px solid var(--danger)">
+            <div class="text-danger" style="font-weight:700">✕ Bulunamadı</div>
+            <div class="mt-16">
+              <button class="btn btn-primary" id="reg-add-btn">Katılımcı Olarak Ekle</button>
+            </div>
+          </div>`;
+        Utils.$('#reg-add-btn')?.addEventListener('click', async () => {
+          const addBtn = Utils.$('#reg-add-btn');
+          addBtn.disabled = true;
+          addBtn.textContent = '...';
+          const addData = await API.post('/registration/add', { email, role: 'participant' });
+          if (addData.error) {
+            Toast.error(addData.message);
+            addBtn.disabled = false;
+            addBtn.textContent = 'Katılımcı Olarak Ekle';
+          } else {
+            Toast.success('Eklendi — kişi artık kayıt olabilir');
+            resultEl.innerHTML = `
+              <div class="card" style="border-left:4px solid var(--success)">
+                <div class="text-success" style="font-weight:700">✓ Whitelist'e Eklendi</div>
+                <div class="mt-8">${Utils.escapeHtml(email)} — katılımcı olarak kayıt olabilir</div>
+              </div>`;
+          }
+        });
+      } else if (data.error) {
+        resultEl.innerHTML = `<div class="text-danger">${Utils.escapeHtml(data.message)}</div>`;
+      }
+    });
   },
 
   _currentRoomId: null,

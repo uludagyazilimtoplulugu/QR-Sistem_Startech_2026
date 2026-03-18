@@ -72,6 +72,7 @@ app.use('/api/surprise', surpriseRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/registration', require('./routes/registration'));
 
 // ============================================================================
 // SPA FALLBACK - all non-API routes serve index.html

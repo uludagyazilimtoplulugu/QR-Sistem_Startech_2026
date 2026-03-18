@@ -54,12 +54,12 @@ async function register(req, res) {
   // Token oluştur
   const tokens = await generateTokens(user);
 
+  setRefreshCookie(res, tokens.refreshToken);
   res.status(201).json({
     message: 'Kayıt başarılı',
     user: { id: user.id, email: user.email, fullName: user.fullName, role: user.role },
     accessToken: tokens.accessToken,
   });
-  setRefreshCookie(res, tokens.refreshToken);
 }
 
 /**
