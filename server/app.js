@@ -7,6 +7,9 @@ const config = require('./config/env');
 
 const app = express();
 
+// Nginx reverse proxy arkasinda calistigimiz icin
+app.set('trust proxy', 1);
+
 // ============================================================================
 // MIDDLEWARE
 // ============================================================================
