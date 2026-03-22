@@ -283,6 +283,15 @@ const App = {
       if (passiveEl) passiveEl.classList.remove('hidden');
       if (activeEl) activeEl.classList.add('hidden');
 
+      // Role göre sadece ilgili rehber kartını göster
+      const role = Auth.user.role;
+      const guideParticipant = Utils.$('#guide-participant');
+      const guideMentor = Utils.$('#guide-mentor');
+      const guideGorevli = Utils.$('#guide-gorevli');
+      if (guideParticipant) guideParticipant.style.display = (role === 'participant') ? '' : 'none';
+      if (guideMentor) guideMentor.style.display = (role === 'mentor' || role === 'startup') ? '' : 'none';
+      if (guideGorevli) guideGorevli.style.display = (role === 'gorevli') ? '' : 'none';
+
       // Etkinlik pasifken dashboard dışı nav linklerini gizle
       document.querySelectorAll('.nav-item[data-page]:not([data-page="dashboard"])').forEach(el => {
         el.classList.add('hidden');
@@ -916,9 +925,10 @@ const App = {
         break;
       }
       case 'admin-monitoring': {
-        const [txData, suspData] = await Promise.all([
+        const [txData, suspData, usersData] = await Promise.all([
           API.get('/admin/transactions?limit=50'),
           API.get('/admin/suspicious'),
+          API.get('/admin/users'),
         ]);
 
         const suspList = Utils.$('#suspicious-list');
@@ -929,6 +939,28 @@ const App = {
               '</div>';
           } else {
             suspList.innerHTML = '<div class="text-success mb-16">✓ Şüpheli aktivite yok</div>';
+          }
+        }
+
+        // Kullanıcı puanları listesi
+        const userList = Utils.$('#admin-user-list');
+        if (userList && usersData.users) {
+          const participants = usersData.users.filter(u => u.role === 'participant');
+          if (participants.length) {
+            userList.innerHTML = participants.sort((a, b) => b.total_points - a.total_points).map(u => `
+              <div class="list-item">
+                <div class="list-item-info">
+                  <div class="list-item-name">${Utils.escapeHtml(u.full_name)}</div>
+                  <div class="list-item-sub">${Utils.escapeHtml(u.email)}</div>
+                </div>
+                <div class="flex gap-8 items-center">
+                  <input type="number" class="form-input" style="width:70px;font-size:13px;padding:4px 6px" value="${u.total_points}" id="up-${u.id}">
+                  <button class="btn btn-primary btn-sm" onclick="App.adjustUserPoints('${u.id}')">Kaydet</button>
+                </div>
+              </div>
+            `).join('');
+          } else {
+            userList.innerHTML = '<div class="empty-state"><p>Henüz katılımcı yok</p></div>';
           }
         }
 
@@ -982,6 +1014,16 @@ const App = {
     const data = await API.del(`/admin/surprise-codes/${id}`);
     if (data.error) Toast.error(data.message);
     else { Toast.success('Kod silindi'); this.loadAdminSection('admin-surprise'); }
+  },
+
+  async adjustUserPoints(userId) {
+    const input = Utils.$(`#up-${userId}`);
+    if (!input) return;
+    const points = parseInt(input.value);
+    if (isNaN(points)) { Toast.error('Geçerli bir puan girin'); return; }
+    const data = await API.put(`/admin/users/${userId}/points`, { points });
+    if (data.error) Toast.error(data.message);
+    else { Toast.success(data.message); this.loadAdminSection('admin-monitoring'); }
   },
 
   copyCode(code) {

@@ -1,10 +1,122 @@
 <div class="page">
-  <!-- PASIF EKRAN -->
+  <!-- PASIF EKRAN — Kullanıcı Kılavuzu -->
   <div id="passive-container" class="hidden">
     <div class="passive-screen">
       <div class="emoji">🚀</div>
-      <div class="title" data-i18n="event.passive_title">Sahne hazır, sen hazır mısın?</div>
-      <div class="subtitle" data-i18n="event.passive_subtitle">Etkinlik henüz başlamadı. Biraz bekleyin...</div>
+      <div class="title">Startech 2026'ya Hoş Geldin!</div>
+      <div class="subtitle">Etkinlik başlamak üzere. Bu sürede sistemi tanı!</div>
+    </div>
+
+    <!-- Kullanım Kılavuzu -->
+    <div class="guide-section">
+      <h2 class="guide-title">📖 Nasıl Çalışır?</h2>
+
+      <!-- Katılımcı Rehberi -->
+      <div class="guide-card" id="guide-participant">
+        <div class="guide-card-header">
+          <span class="guide-icon">🎯</span>
+          <span class="guide-card-title">Katılımcı Rehberi</span>
+        </div>
+        <div class="guide-steps">
+          <div class="guide-step">
+            <span class="step-num">1</span>
+            <div class="step-content">
+              <strong>QR Kodunu Göster</strong>
+              <p>Tarama sekmesinden "QR Kodum" kısmını aç. Karşındaki kişi senin QR kodunu taratsın.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <span class="step-num">2</span>
+            <div class="step-content">
+              <strong>QR Kod Tarat</strong>
+              <p>"Tara" sekmesine geç, kamerayı aç ve karşındaki kişinin QR kodunu tarat. Karşılıklı tarama yapılınca puan kazanırsın!</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <span class="step-num">3</span>
+            <div class="step-content">
+              <strong>Mentor & Startup Ziyareti</strong>
+              <p>Mentor veya startup standını ziyaret et, QR kodlarını tarat. Onay verdiklerinde puan kazanırsın.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <span class="step-num">4</span>
+            <div class="step-content">
+              <strong>Sürpriz Kodlar</strong>
+              <p>Etkinlik boyunca dağıtılan sürpriz kodları ana sayfadaki "Sürpriz Kod" alanına gir ve ekstra puan kazan!</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <span class="step-num">5</span>
+            <div class="step-content">
+              <strong>Odalara Katıl</strong>
+              <p>Mülakat ve case study odalarına gir. Görevli QR kodunu tarattığında giriş yaparsın, çıkışta puan kazanırsın.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mentor/Startup Rehberi -->
+      <div class="guide-card" id="guide-mentor">
+        <div class="guide-card-header">
+          <span class="guide-icon">🌟</span>
+          <span class="guide-card-title">Mentor & Startup Rehberi</span>
+        </div>
+        <div class="guide-steps">
+          <div class="guide-step">
+            <span class="step-num">1</span>
+            <div class="step-content">
+              <strong>QR Kodunu Göster</strong>
+              <p>"QR Kodum" sayfasından QR kodunu katılımcılara göster.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <span class="step-num">2</span>
+            <div class="step-content">
+              <strong>Onay Ver</strong>
+              <p>Katılımcı seni tarattığında ana sayfanda "Bekleyen Onaylar" kısmında bildirim gelir. ✓ ile onayla.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Görevli Rehberi -->
+      <div class="guide-card" id="guide-gorevli">
+        <div class="guide-card-header">
+          <span class="guide-icon">🚪</span>
+          <span class="guide-card-title">Görevli Rehberi</span>
+        </div>
+        <div class="guide-steps">
+          <div class="guide-step">
+            <span class="step-num">1</span>
+            <div class="step-content">
+              <strong>Oda Kapısını Yönet</strong>
+              <p>"Oda" sayfasından kamerayı aç. Katılımcının QR kodunu tarat — otomatik giriş yapılır.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <span class="step-num">2</span>
+            <div class="step-content">
+              <strong>Çıkış Onayla</strong>
+              <p>Katılımcı çıkarken "Tamamla" butonuna bas. Katılımcı çıkış puanını kazanır.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- İpuçları -->
+      <div class="guide-card guide-tips">
+        <div class="guide-card-header">
+          <span class="guide-icon">💡</span>
+          <span class="guide-card-title">İpuçları</span>
+        </div>
+        <ul class="tips-list">
+          <li>QR kodun her 60 saniyede yenilenir — güncel kodu göster</li>
+          <li>Aynı kişiyi günde sadece 1 kez taratabilirsin</li>
+          <li>Kamera açılmazsa tarayıcı ayarlarından kamera iznini kontrol et</li>
+          <li>6 haneli kısa kodu manuel olarak da girebilirsin</li>
+        </ul>
+      </div>
     </div>
   </div>
 

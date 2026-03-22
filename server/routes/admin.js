@@ -43,5 +43,6 @@ router.delete('/surprise-codes/:id', asyncHandler(adminController.deleteSurprise
 router.get('/transactions', asyncHandler(adminController.getTransactions));
 router.get('/suspicious', asyncHandler(adminController.getSuspicious));
 router.get('/users', asyncHandler(adminController.getUsers));
+router.put('/users/:id/points', asyncHandler(adminController.adjustUserPoints));
 
 module.exports = router;

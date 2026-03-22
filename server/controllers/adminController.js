@@ -235,6 +235,38 @@ async function getUsers(req, res) {
   res.json({ users });
 }
 
+async function adjustUserPoints(req, res) {
+  const userId = req.params.id;
+  const { points, reason } = req.body;
+  if (!userId || points === undefined || points === null) {
+    return res.status(400).json({ error: 'missing_fields', message: 'Kullanıcı ve puan gerekli' });
+  }
+
+  const user = await User.findById(userId);
+  if (!user) {
+    return res.status(404).json({ error: 'not_found', message: 'Kullanıcı bulunamadı' });
+  }
+
+  const pointsNum = parseInt(points);
+  if (isNaN(pointsNum)) {
+    return res.status(400).json({ error: 'invalid_points', message: 'Geçerli bir puan girin' });
+  }
+
+  // Puanı güncelle
+  await User.setPoints(userId, pointsNum);
+
+  // İşlemi kaydet
+  await Transaction.create({
+    scannerId: req.user.id,
+    scannedId: userId,
+    points: pointsNum - user.total_points,
+    type: 'admin_adjust',
+    description: reason || `Admin puan düzenlemesi: ${user.total_points} → ${pointsNum}`,
+  });
+
+  res.json({ message: `${user.full_name} puanı ${pointsNum} olarak güncellendi` });
+}
+
 // ===================== HELPERS =====================
 
 function generateRandomCode() {
@@ -273,6 +305,6 @@ module.exports = {
   getRooms, createRoom, updateRoom, deleteRoom, assignStaff,
   getPointConfig, updatePointConfig,
   getSurpriseCodes, createSurpriseCode, deleteSurpriseCode,
-  getTransactions, getSuspicious, getUsers,
+  getTransactions, getSuspicious, getUsers, adjustUserPoints,
   checkRegistration,
 };
