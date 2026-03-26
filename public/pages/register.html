@@ -1,6 +1,6 @@
 <div class="auth-page">
   <div class="auth-card">
-    <div class="auth-logo">⚡ QR Sistem</div>
+    <div class="auth-logo"><img src="/images/startech_logo.png" alt="Startech 2026" style="max-width:200px"></div>
     <div class="auth-subtitle" data-i18n="auth.register_subtitle">Yeni hesap oluşturun</div>
 
     <div class="card">
@@ -16,6 +16,12 @@
         <div class="form-group">
           <label class="form-label" data-i18n="auth.password">Şifre</label>
           <input type="password" id="reg-password" class="form-input" placeholder="En az 6 karakter" required minlength="6">
+        </div>
+        <div class="form-group" style="margin-top:8px">
+          <label style="display:flex;align-items:start;gap:8px;font-size:13px;cursor:pointer">
+            <input type="checkbox" id="kvkk-check" required style="margin-top:3px">
+            <span>Kişisel verilerimin işlenmesini kabul ediyorum.</span>
+          </label>
         </div>
         <button type="submit" id="register-btn" class="btn btn-primary btn-lg" data-i18n="auth.register_btn">Kayıt Ol</button>
       </form>
