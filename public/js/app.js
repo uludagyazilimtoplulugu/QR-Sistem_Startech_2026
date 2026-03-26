@@ -292,6 +292,14 @@ const App = {
       if (guideMentor) guideMentor.style.display = (role === 'mentor' || role === 'startup') ? '' : 'none';
       if (guideGorevli) guideGorevli.style.display = (role === 'gorevli') ? '' : 'none';
 
+      // Role göre ipuçları kartını göster
+      const tipsParticipant = Utils.$('#tips-participant');
+      const tipsMentor = Utils.$('#tips-mentor');
+      const tipsGorevli = Utils.$('#tips-gorevli');
+      if (tipsParticipant) tipsParticipant.style.display = (role === 'participant') ? '' : 'none';
+      if (tipsMentor) tipsMentor.style.display = (role === 'mentor' || role === 'startup') ? '' : 'none';
+      if (tipsGorevli) tipsGorevli.style.display = (role === 'gorevli') ? '' : 'none';
+
       // Etkinlik pasifken dashboard dışı nav linklerini gizle
       document.querySelectorAll('.nav-item[data-page]:not([data-page="dashboard"])').forEach(el => {
         el.classList.add('hidden');
